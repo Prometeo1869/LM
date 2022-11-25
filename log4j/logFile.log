@@ -1,0 +1,5 @@
+2022-10-26 11:04:06 INFO  Main:32 - Info message
+2022-10-26 11:04:06 TRACE Main:33 - Simple trace
+2022-10-26 11:04:06 DEBUG Main:34 - Debug message. 
+2022-10-26 11:04:06 ERROR Main:35 - Error message
+2022-10-26 11:04:06 FATAL Main:36 - Fatal error
