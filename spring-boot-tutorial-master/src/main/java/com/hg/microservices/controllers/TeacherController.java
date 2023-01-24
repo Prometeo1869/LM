@@ -46,5 +46,4 @@ public class TeacherController {
 	public void deleteTeacher(@PathVariable String id) {
 		personService.deletePerson(id);
 	}
-
 }

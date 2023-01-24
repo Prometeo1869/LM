@@ -68,6 +68,11 @@ public class Teacher extends Person implements Serializable {
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
+
+	@Override
+	public String toString() {
+		return "Teacher [id= " + getId() + ", name= " + getName() + ", gender=" + this.getGender() + "]";
+	}
 	
 	
 }

@@ -46,9 +46,7 @@ public class Course implements Serializable {
 							"        REFERENCES public.\"Teachers\" (id) MATCH SIMPLE\r\n" + 
 							"        ON UPDATE CASCADE\r\n" + 
 							"        ON DELETE CASCADE",
-							value = ConstraintMode.CONSTRAINT
-					)
-			)
+							value = ConstraintMode.CONSTRAINT))
 	private Teacher teacher;
 	
 	@Column(name = "name", nullable = false, unique = true)
@@ -62,8 +60,7 @@ public class Course implements Serializable {
 
 	@JsonIdentityInfo(
 			generator = ObjectIdGenerators.PropertyGenerator.class,
-			property = "id"
-			)
+			property = "id")
 	@JsonIdentityReference(alwaysAsId = true)
 	@ManyToMany(mappedBy = "enrolled_courses", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	private List<Student> enrolled_students;
@@ -119,7 +116,4 @@ public class Course implements Serializable {
 	public void setEnrolled_students(List<Student> enrolled_students) {
 		this.enrolled_students = enrolled_students;
 	}
-	
-	
-
 }
