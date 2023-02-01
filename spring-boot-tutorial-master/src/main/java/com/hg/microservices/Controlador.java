@@ -52,6 +52,7 @@ public class Controlador {
            * @throws ServletException if a servlet-specific error occurs
            * @throws IOException if an I/O error occurs
            */
+          
           @RequestMapping (value="/saludo")
           protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException

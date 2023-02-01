@@ -21,7 +21,7 @@ public class StudentDTO extends PersonDTO {
 
 	@Override
 	public String toString() {
-		return "StudentDTO [Escolarizado:" + schoolarship + ", Estado:" + state + "]";
+		return "id: " + getId() + ", Nombre: " + getName() + ", Escolarizado:" + ((schoolarship == true) ? " Si" : " No") + ", Estado:" + state + "";
 	}
 	
 	

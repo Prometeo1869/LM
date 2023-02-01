@@ -1,4 +1,5 @@
-package com.hg.microservices;
+package com.iesvalleinclan.SpringAPP;
+
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.*;

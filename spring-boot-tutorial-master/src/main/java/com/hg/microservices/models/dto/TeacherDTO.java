@@ -21,6 +21,6 @@ public class TeacherDTO extends PersonDTO{
 	
 	@Override
 	public String toString() {
-		return "Teacher [id: " + getId() + ", Nombre: " + getName() + ", Género:" + this.getGender() + ", Dir.: " + this.degree + ", Salario: " + this.getSalary() +"]";
+		return "id: " + getId() + ", Nombre: " + getName() + ", Género:" + this.getGender() + ", Dir.: " + this.degree + ", Salario: " + this.getSalary() +"";
 	}
 }
