@@ -1,17 +1,25 @@
 package com.hg.microservices;
-import org.springframework.stereotype.*;
-import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.*;
-import javax.servlet.*;
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 
-import com.iesvalleinclan.SpringAPP.dto.*;
-import com.iesvalleinclan.SpringAPP.models.*;
-import java.net.*;
-import com.google.gson.*;
-import java.time.format.*;
-import java.time.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.hg.microservices.models.Course;
+import com.hg.microservices.models.Student;
+import com.hg.microservices.models.Teacher;
+import com.hg.microservices.models.dto.CourseDTO;
+import com.hg.microservices.models.dto.StudentDTO;
+import com.hg.microservices.models.dto.TeacherDTO;
 
 @Controller
 public class Controlador4 {
