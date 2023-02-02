@@ -45,9 +45,7 @@ public class Student extends Person implements Serializable{
 									"        REFERENCES public.\"Students\" (id) MATCH SIMPLE\r\n" + 
 									"        ON UPDATE CASCADE\r\n" + 
 									"        ON DELETE CASCADE",
-									value = ConstraintMode.CONSTRAINT
-							)
-					),
+									value = ConstraintMode.CONSTRAINT)),
 			inverseJoinColumns = @JoinColumn(
 					name = "course_key",
 					referencedColumnName = "key",
@@ -57,9 +55,7 @@ public class Student extends Person implements Serializable{
 									"        REFERENCES public.\"Courses\" (key) MATCH SIMPLE\r\n" + 
 									"        ON UPDATE CASCADE\r\n" + 
 									"        ON DELETE CASCADE",
-									value = ConstraintMode.CONSTRAINT
-							)
-					),
+									value = ConstraintMode.CONSTRAINT)),
 			uniqueConstraints = @UniqueConstraint(name = "composite_key", columnNames = {"student_id", "course_key"})
 			)
 	private List<Course> enrolled_courses;

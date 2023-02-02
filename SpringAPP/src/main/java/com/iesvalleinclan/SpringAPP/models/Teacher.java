@@ -1,23 +1,13 @@
-package com.hg.microservices.models;
+package com.iesvalleinclan.SpringAPP.models;
 
-import java.io.Serializable;
-import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import javax.persistence.ForeignKey;
+import javax.persistence.CascadeType;
+import org.hibernate.annotations.*;
+import java.io.*;
+import java.util.*;
 
 @Entity(name = "Teacher")
 @Table(name = "\"Teachers\"", schema = "public")
@@ -32,47 +22,57 @@ public class Teacher extends Person implements Serializable {
 
 	@Column(name = "salary", nullable = false)
 	private Double salary;
-	
-	@JsonIdentityInfo(
-			generator = ObjectIdGenerators.PropertyGenerator.class,
-			property = "key"
-			)
-	@JsonIdentityReference(alwaysAsId = true)
+
 	@OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Course> courses;
 
+	public static long getSerialversionuid() {
+
+		return serialVersionUID;
+
+	}
+
 	public String getDegree() {
+
 		return degree;
+
 	}
 
 	public void setDegree(String degree) {
+
 		this.degree = degree;
+
 	}
 
 	public Double getSalary() {
+
 		return salary;
+
 	}
 
 	public void setSalary(Double salary) {
-		this.salary = salary;
-	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+		this.salary = salary;
+
 	}
 
 	public List<Course> getCourses() {
+
 		return courses;
+
 	}
 
 	public void setCourses(List<Course> courses) {
+
 		this.courses = courses;
+
 	}
 
-	@Override
 	public String toString() {
-		return "Teacher [id= " + getId() + ", name= " + getName() + ", gender=" + this.getGender() + "]";
+
+		return "Teacher {ID: " + getId() + ", Name: " + getName() + ", Gender: " + getGender() + ", Email: "
+				+ getEmail() + ", Degree: " + getDegree() + ", Salary: " + getSalary() + ", Courses: " + getCourses () + "}\n";
+
 	}
-	
-	
+
 }
