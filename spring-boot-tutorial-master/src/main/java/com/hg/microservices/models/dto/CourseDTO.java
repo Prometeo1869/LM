@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hg.microservices.models.Course;
+import com.hg.microservices.models.Teacher;
 
 public class CourseDTO {
 	
@@ -32,22 +34,14 @@ public class CourseDTO {
 
 	public Course obtenerDTOCourse(JsonObject object) {
 
-		Course tVO = new Course();
+		Course cVO = new Course();
+		cVO.setName(object.get("name").getAsString());
+		
+		TeacherDTO teacherDTO = new TeacherDTO();
+		
+		cVO.setTeacher(teacherDTO.obtenerDTOTeacher(object.get("teacher").getAsJsonObject()));
 
-		tVO.setKey(Long.parseLong(object.get("key").toString()));
-		tVO.setName(object.get("name").toString());
-		tVO.setTeacher(teacherDTO.obtenerDTOTeacher(object.get("teacher").getAsJsonObject()));
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String fecha1 = object.get("start_date").toString();
-		fecha1 = fecha1.substring(1, fecha1.length() - 1);
-		tVO.setStart_date(LocalDate.parse(fecha1, formatter));
-		System.out.println(object.get("start_date").toString());
-		String fecha2 = object.get("ending_date").toString();
-		fecha2 = fecha2.substring(1, fecha2.length() - 1);
-		tVO.setEnding_date(LocalDate.parse(fecha2, formatter));
-		System.out.println(object.get("ending_date").toString());
-
-		return tVO;
+		return cVO;
 
 	}
 

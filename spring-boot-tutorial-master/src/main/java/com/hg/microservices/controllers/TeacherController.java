@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hg.microservices.models.Course;
 import com.hg.microservices.models.Teacher;
 import com.hg.microservices.services.PersonService;
 import com.hg.microservices.services.TeacherService;
@@ -27,10 +29,11 @@ public class TeacherController {
 	@Autowired
 	private PersonService personService;
 	
-	@PostMapping("/profesor")
-	public Teacher createTeacher(@Validated @RequestBody Teacher teacher) {
-		return teacherService.saveTeacher(teacher);
-	}
+    @PostMapping(path = "/profesor", consumes = "application/x-www-form-urlencoded")
+    public Teacher createTeacher(@Validated @ModelAttribute Teacher teacher) {
+
+        return teacherService.saveTeacher(teacher);
+    }
 	
 	@GetMapping("/profesores")
 	public List<Teacher> readTeachers(){

@@ -4,10 +4,10 @@ pageEncoding="UTF-8" %>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Dar alta profesores 2</title>
+<title>Dar alta profesores</title>
 </head>
 <body>
-<h1>FORM desde JSP</h1>
+<h1>FORM desde JSP</h1><br>
 <form th:object="${profesor}" action="/api/colegio/profesor" method="post">
         Grado:	 <input th:field="*{degree}" type="text" name="degree"><br></br>
         Salario: <input th:field="*{salary}" type="text" name="salary"><br></br>
@@ -19,4 +19,3 @@ pageEncoding="UTF-8" %>
 </form>
 </body>
 </html>
-<!-- https://parzibyte.me/blog/2019/08/26/procesar-formulario-spring-boot/ -->

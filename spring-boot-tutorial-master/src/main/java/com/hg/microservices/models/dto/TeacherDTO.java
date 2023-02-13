@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,8 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.hg.microservices.models.Course;
 import com.hg.microservices.models.Teacher;
 
 import lombok.Getter;
@@ -32,16 +35,26 @@ public class TeacherDTO extends PersonDTO {
 
 		Teacher tVO = new Teacher();
 
-		tVO.setId(object.get("id").toString());
-		tVO.setName(object.get("name").toString());
-		tVO.setGender(object.get("gender").toString());
-		tVO.setEmail(object.get("email").toString());
-		tVO.setDegree(object.get("degree").toString());
-		tVO.setSalary(Double.parseDouble(object.get("salary").toString()));
-		System.out.println(object.getAsJsonArray("courses").toString());
-
+		tVO.setId(object.get("id").getAsString());
+		tVO.setName(object.get("name").getAsString());
+		tVO.setGender(object.get("gender").getAsString());
+		tVO.setEmail(object.get("email").getAsString());
+		tVO.setDegree(object.get("degree").getAsString());
+		tVO.setSalary(object.get("salary").getAsDouble());
+		
+		List<Course> cursos = new LinkedList<>();
+		JsonArray json = object.getAsJsonArray("courses");
+		
+		for (int i = 0; i < json.size(); i++) {
+			JsonElement element = json.get(i);
+			Course cursoVO = new Course();
+			tVO.setName(element.getAsString());
+			cursos.add(cursoVO);
+		}
+		
+		tVO.setCourses(cursos);
+		
 		return tVO;
-
 	}
 
 	public List<Teacher> obtenerDTO_listProfesores(HttpServletRequest request, HttpServletResponse response)
