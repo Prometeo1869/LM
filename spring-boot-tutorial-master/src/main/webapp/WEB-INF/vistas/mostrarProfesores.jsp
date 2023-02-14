@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" import="com.hg.microservices.models.dto*, java.util.*" %>
+	pageEncoding="UTF-8"
+	import="com.hg.microservices.models.*, java.util.*" %>
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -7,18 +8,21 @@ pageEncoding="UTF-8" import="com.hg.microservices.models.dto*, java.util.*" %>
 <title>Mostrar profesores</title>
 </head>
 <body>
-<h1>PROFESORES en JSP</h1><br>
-<% 
-	List<TeacherDTO> lista = (List<TeacherDTO> request.getAttribute("profesores");
-	Iterator<TeacherDTO> it = listado.iterator();
-	out.println("<table border="2">);
-	out.println("<tr><th>Nombre</th><th>Email</th><th>Salario</th><th>Cursos</th><tr>");
-	while(it.hasNext()) {
-		TeacherDTO t = (TeacherDTO) it.next();
-			out.println("<tr><td>" + it.getName() + "</td><td>" + it.getEmail() + "</td><td>" + getSalario() + "</td>");
-			Iterator<CourseDTO> c = t.getCourses().iterator();
-			out.println("<td>");
-			while(c.hasNext()) {
-				out.printl(c.next().getName() + "</td></tr></table>"); %>
+	<h1>PROFESORES en JSP</h1>
+	<br>
+<%
+	List<Teacher> lista = (List<Teacher>) request.getAttribute("profesores"); 
+	Iterator<Teacher> it = lista.iterator(); 
+	out.println("<table border='2'>"); 
+	out.println("<tr><th>Nombre</th><th>Email</th><th>Salario</th><th>Cursos</th><tr>"); 
+	while(it.hasNext()) { 
+		Teacher t = (Teacher)	it.next(); 
+		out.println("<tr><td>" + t.getName() + "</td><td>" + t.getEmail() + "</td><td>" + t.getSalary() + "</td>"); 
+		Iterator<Course> c = t.getCourses().iterator(); 
+		out.println("<td>"); 
+		while(c.hasNext()) { 
+			out.println(c.next().getName() + "</td></tr></table>"); 
+		}}
+	%> 
 </body>
 </html>

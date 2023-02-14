@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -34,6 +34,7 @@ public class TeacherDTO extends PersonDTO {
 	public Teacher obtenerDTOTeacher(JsonObject object) {
 
 		Teacher tVO = new Teacher();
+		Gson gson = new Gson();//
 
 		tVO.setId(object.get("id").getAsString());
 		tVO.setName(object.get("name").getAsString());
@@ -41,36 +42,38 @@ public class TeacherDTO extends PersonDTO {
 		tVO.setEmail(object.get("email").getAsString());
 		tVO.setDegree(object.get("degree").getAsString());
 		tVO.setSalary(object.get("salary").getAsDouble());
-		
+
 		List<Course> cursos = new LinkedList<>();
 		JsonArray json = object.getAsJsonArray("courses");
 		
-		for (int i = 0; i < json.size(); i++) {
-			JsonElement element = json.get(i);
-			Course cursoVO = new Course();
-			tVO.setName(element.getAsString());
-			cursos.add(cursoVO);
-		}
+		//String cur = gson.toJson(object.getAsJsonArray("courses"));//
 		
+		//if (!cur.equals("[]") && !cur.equals("null")) {//
+
+			for (int i = 0; i < json.size(); i++) {
+				JsonElement element = json.get(i);
+				Course cursoVO = new Course();
+				tVO.setName(element.getAsString());
+				cursos.add(cursoVO);
+			}
+		//}//
 		tVO.setCourses(cursos);
-		
+
 		return tVO;
 	}
 
 	public List<Teacher> obtenerDTO_listProfesores(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String url = "http://localhost:8080/api/colegio/profesores";
+		String url = "http://localhost:8081/api/colegio/profesores";
 		List<Teacher> l = new LinkedList<Teacher>();
 
 		try {
-
 			HttpURLConnection conn = conexionURL(url);
 			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 			String output;
 
 			while ((output = br.readLine()) != null) {
-
 				JsonParser parser = new JsonParser();
 				Object obj = parser.parse(output);
 				JsonArray json = (JsonArray) obj;

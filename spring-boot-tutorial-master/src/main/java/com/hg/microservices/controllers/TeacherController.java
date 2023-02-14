@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hg.microservices.models.Course;
 import com.hg.microservices.models.Teacher;
 import com.hg.microservices.services.PersonService;
 import com.hg.microservices.services.TeacherService;

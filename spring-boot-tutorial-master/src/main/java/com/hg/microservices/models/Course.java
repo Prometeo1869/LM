@@ -22,6 +22,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity(name = "Course")
@@ -36,6 +37,7 @@ public class Course implements Serializable {
         @Column(name = "key")
         private Long key;
         
+        @JsonIgnoreProperties("courses")
         @ManyToOne
         @JoinColumn(
                         name = "teacher_id",

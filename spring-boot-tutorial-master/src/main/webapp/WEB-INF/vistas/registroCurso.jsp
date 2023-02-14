@@ -9,7 +9,7 @@ pageEncoding="UTF-8" %>
 <body>
 <h1>FORM desde JSP</h1>
 <form th:object="${curso}" action="/api/colegio/curso" method="post">
-        Profesor id: 	<input th:field="*{teacher:{id}}" type="text" name="teacher"><br></br>
+        Profesor id: 	<input th:field="*{teacher.id}" type="text" name="teacher.id"><br></br>
         Nombre Curso:  	<input th:field="*{name}" type="text" name="name"><br></br>
         <input type="submit" value="Confirmar">
 </form>
